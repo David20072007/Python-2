@@ -1,0 +1,27 @@
+Библиотека pandas
+import pandas as pd
+
+# Чтение данных из CSV файла
+data = pd.read_csv('example.csv.py')
+
+# Простой анализ данных: вывод первых 5 строк
+print("Pandas:")
+print(data.head())
+print()
+
+# Простой анализ данных: вывод статистики по данным
+print(data.describe())
+print()
+
+# Библиотека numpy
+import numpy as np
+
+# Создание массива чисел
+array = np.array([1, 2, 3, 4, 5])
+
+# Выполнение математических операций с массивом
+squared_array = np.square(array)
+
+# Вывод результатов в консоль
+print("NumPy:")
+print(squared_array)
