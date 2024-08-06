@@ -1,0 +1,37 @@
+023/12/13 00:00|Домашнее задание по теме "Блокировки и обработка ошибок"
+# import threading
+# class BankAccount:
+#     def __init__(self, initial_balance=0):
+#         self.balance = initial_balance
+#         self.lock = threading.Lock()
+#     def deposit(self, amount):
+#         with self.lock:
+#             self.balance += amount
+#             print(f"Пополнение: {amount}, новый баланс: {self.balance}")
+#     def withdraw(self, amount):
+#         with self.lock:
+#             if self.balance >= amount:
+#                 self.balance -= amount
+#                 print(f"Снятие: {amount}, новый баланс: {self.balance}")
+#             else:
+#                 print(f"Недостаточно средств для снятия: {amount}, текущий баланс: {self.balance}")
+# def deposit_thread(account, amount, iterations):
+#     for _ in range(iterations):
+#         account.deposit(amount)
+# def withdraw_thread(account, amount, iterations):
+#     for _ in range(iterations):
+#         account.withdraw(amount)
+# account = BankAccount(initial_balance=1000)
+# deposit_thread1 = threading.Thread(target=deposit_thread, args=(account, 100, 5))
+# deposit_thread2 = threading.Thread(target=deposit_thread, args=(account, 200, 5))
+# withdraw_thread1 = threading.Thread(target=withdraw_thread, args=(account, 50, 10))
+# withdraw_thread2 = threading.Thread(target=withdraw_thread, args=(account, 150, 5))
+# deposit_thread1.start()
+# deposit_thread2.start()
+# withdraw_thread1.start()
+# withdraw_thread2.start()
+# deposit_thread1.join()
+# deposit_thread2.join()
+# withdraw_thread1.join()
+# withdraw_thread2.join()
+# print(f"Финальный баланс: {account.balance}")
