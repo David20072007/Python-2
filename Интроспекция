@@ -1,0 +1,38 @@
+import inspect
+import types
+def introspection_info(obj):
+    info = {}
+    info['type'] = type(obj).__name__
+    attributes = dir(obj)
+    info['attributes'] = attributes
+    methods = [attr for attr in attributes if callable(getattr(obj, attr))]
+    info['methods'] = methods
+    info['module'] = getattr(obj, '__module__', 'N/A')
+    if isinstance(obj, types.FunctionType):
+        info['signature'] = inspect.signature(obj)
+        info['source_code'] = inspect.getsource(obj)
+    elif isinstance(obj, types.MethodType):
+        info['signature'] = inspect.signature(obj)
+        info['source_code'] = inspect.getsource(obj)
+    elif isinstance(obj, types.ModuleType):
+        info['file'] = getattr(obj, '__file__', 'N/A')
+    elif isinstance(obj, types.BuiltinFunctionType):
+        info['doc'] = getattr(obj, '__doc__', 'N/A')
+    elif isinstance(obj, types.BuiltinMethodType):
+        info['doc'] = getattr(obj, '__doc__', 'N/A')
+
+    return info
+number_info = introspection_info(42)
+print(number_info)
+def example_function(x):
+    return x * 2
+function_info = introspection_info(example_function)
+print(function_info)
+class ExampleClass:
+    def __init__(self, value):
+        self.value = value
+    def method(self):
+        return self.value * 2
+instance = ExampleClass(10)
+class_info = introspection_info(instance)
+print(class_info)
